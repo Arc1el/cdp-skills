@@ -203,6 +203,18 @@ tree = await skills.getTree(); // fresh tree after navigation
 
 ---
 
+## Completion (REQUIRED)
+
+After the task is fully complete and results have been reported to the user, **always run this cleanup command** to prevent the stop hook from blocking:
+
+```bash
+find ~ -path "*/.omc/state/sessions/*/skill-active-state.json" -exec grep -l '"cdp-browser"' {} \; 2>/dev/null | xargs rm -f 2>/dev/null; echo "skill state cleared"
+```
+
+This removes the `skill-active-state.json` that oh-my-claudecode writes when a skill is invoked. Without this step, the stop hook will block completion 3 times before auto-clearing.
+
+---
+
 ## Full API Reference
 
 See `references/api.md` for complete type definitions and all options.
