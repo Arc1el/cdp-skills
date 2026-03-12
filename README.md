@@ -17,7 +17,7 @@ Claude Code 브라우저 자동화 플러그인. Chrome DevTools Protocol의 Acc
 ### 1. 마켓플레이스 등록
 
 ```
-/plugin marketplace add Arc1el/cdp-skills
+/plugin marketplace add https://github.com/Arc1el/cdp-skills
 ```
 
 ### 2. 플러그인 설치
