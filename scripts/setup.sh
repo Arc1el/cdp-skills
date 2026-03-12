@@ -20,7 +20,7 @@ echo "[2/3] Installing Claude Code skill..."
 mkdir -p "$SKILL_DEST/references"
 
 # SKILL.md의 하드코딩된 경로를 실제 경로로 교체
-sed "s|/Users/jayden/Documents/cdp-skills|$REPO_DIR|g" \
+sed "s|__PLUGIN_ROOT__|$REPO_DIR|g" \
   "$SKILL_SRC/SKILL.md" > "$SKILL_DEST/SKILL.md"
 
 cp "$SKILL_SRC/references/api.md" "$SKILL_DEST/references/api.md"

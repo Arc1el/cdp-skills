@@ -34,7 +34,7 @@ SKILL_DEST="$HOME/.claude/skills/cdp-browser"
 
 mkdir -p "$SKILL_DEST/references"
 
-sed "s|/Users/jayden/Documents/cdp-skills|$PLUGIN_ROOT|g" \
+sed "s|__PLUGIN_ROOT__|$PLUGIN_ROOT|g" \
   "$SKILL_SRC/SKILL.md" > "$SKILL_DEST/SKILL.md"
 
 cp "$SKILL_SRC/references/api.md" "$SKILL_DEST/references/api.md"

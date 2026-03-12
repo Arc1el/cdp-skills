@@ -5,7 +5,7 @@ description: Browser automation skill using CDP (Chrome DevTools Protocol) Acces
 
 # CDP Browser Automation Skill
 
-This skill uses the **cdp-skills** library (`/Users/jayden/Documents/cdp-skills`) to automate Chrome via the Accessibility Tree. Instead of parsing full HTML (expensive tokens), it uses a numbered reference system:
+This skill uses the **cdp-skills** library (`__PLUGIN_ROOT__`) to automate Chrome via the Accessibility Tree. Instead of parsing full HTML (expensive tokens), it uses a numbered reference system:
 
 ```
 [1] heading "Sign in"
@@ -22,7 +22,7 @@ Claude then calls `click(4)`, `type(2, "email")` — no CSS selectors, no XPath.
 ## Core API
 
 ```typescript
-import { CdpSkills } from '/Users/jayden/Documents/cdp-skills/src/CdpSkills';
+import { CdpSkills } from '__PLUGIN_ROOT__/src/CdpSkills';
 
 const skills = new CdpSkills({ port: 9222 });
 await skills.launch();           // Chrome 자동 실행 + CDP 연결
@@ -64,7 +64,7 @@ Always wrap in `try/finally` so Chrome closes even on error.
 Write a **complete TypeScript script** and run with `npx ts-node`:
 
 ```typescript
-import { CdpSkills } from '/Users/jayden/Documents/cdp-skills/src/CdpSkills';
+import { CdpSkills } from '__PLUGIN_ROOT__/src/CdpSkills';
 
 async function main() {
   const skills = new CdpSkills();
@@ -111,7 +111,7 @@ main().catch(console.error);
 
 Run with:
 ```bash
-cd /Users/jayden/Documents/cdp-skills
+cd __PLUGIN_ROOT__
 npx ts-node <script-path>.ts
 ```
 
