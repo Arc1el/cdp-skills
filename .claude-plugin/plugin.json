@@ -1,0 +1,13 @@
+{
+  "name": "cdp-skills",
+  "version": "0.1.0",
+  "description": "CDP Accessibility Tree 기반 브라우저 자동화. AX 트리 번호 참조로 LLM 토큰 비용 70-80% 절감. Playwright 수준 자동화를 Claude Code 에이전트 스킬로 제공.",
+  "author": {
+    "name": "jayden"
+  },
+  "repository": "https://github.com/Arc1el/cdp-skills",
+  "homepage": "https://github.com/Arc1el/cdp-skills",
+  "license": "MIT",
+  "keywords": ["browser-automation", "cdp", "accessibility-tree", "playwright", "scraping", "claude-code"],
+  "skills": "./skills/"
+}
