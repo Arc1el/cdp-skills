@@ -21,9 +21,9 @@ Claude then calls `click(4)`, `type(2, "email")` — no CSS selectors, no XPath.
 
 ## Core API
 
-```typescript
-const PLUGIN = `${process.env.HOME}/.claude/plugins/cdp-skills`;
-const { CdpSkills } = require(PLUGIN + '/src/CdpSkills');
+```javascript
+const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 const skills = new CdpSkills({ port: 9222 });
 await skills.launch();           // Chrome 자동 실행 + CDP 연결
@@ -62,15 +62,16 @@ Always wrap in `try/finally` so Chrome closes even on error.
 
 ## Script Pattern
 
-Write a **complete TypeScript script** at `/tmp/<task>.ts` and run with `npx ts-node`:
+**파일 없이 `node -e`로 직접 실행** (임시 파일 불필요):
 
-```typescript
-const PLUGIN = `${process.env.HOME}/.claude/plugins/cdp-skills`;
-const { CdpSkills } = require(PLUGIN + '/src/CdpSkills');
+```bash
+node -e "
+const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 async function main() {
   const skills = new CdpSkills();
-  await skills.launch({ headless: false }); // headless: true for background
+  await skills.launch({ headless: true }); // headless: false for visible browser
 
   try {
     // 1. Navigate
@@ -79,9 +80,7 @@ async function main() {
 
     // 2. Parse refs from map
     const map = skills.getRefMap();
-    let emailRef: number | null = null;
-    let pwRef: number | null = null;
-    let submitRef: number | null = null;
+    let emailRef = null, pwRef = null, submitRef = null;
 
     for (const [ref, node] of map) {
       const name = node.name.toLowerCase();
@@ -108,12 +107,37 @@ async function main() {
 }
 
 main().catch(console.error);
+"
 ```
 
-Run with:
+### Advanced: JS Evaluation (DOM 직접 접근)
 ```bash
-cd ~/.claude/plugins/cdp-skills
-npx ts-node --project tsconfig.json /tmp/<task>.ts
+node -e "
+const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
+
+async function main() {
+  const skills = new CdpSkills();
+  await skills.launch({ headless: true });
+  try {
+    await skills.navigate('https://target-site.com');
+    await new Promise(r => setTimeout(r, 2000));
+
+    // DOM 직접 평가
+    const client = skills.connection.getClient();
+    const result = await client.Runtime.evaluate({
+      expression: \`(() => {
+        return document.title;
+      })()\`,
+      returnByValue: true
+    });
+    console.log(result.result.value);
+  } finally {
+    await skills.close();
+  }
+}
+main().catch(console.error);
+"
 ```
 
 ---
@@ -122,7 +146,7 @@ npx ts-node --project tsconfig.json /tmp/<task>.ts
 
 After `getTree()` or `navigate()`, parse `getRefMap()` to find elements:
 
-```typescript
+```javascript
 const map = skills.getRefMap();
 
 // Strategy 1: by role
@@ -143,24 +167,24 @@ for (const [ref, node] of map) {
 ## Common Patterns
 
 ### Login
-```typescript
+```javascript
 // Navigate → find id/pw/submit → type × 2 → click → wait → verify
 ```
 
 ### Form Fill
-```typescript
+```javascript
 // Navigate → getRefMap → for each field: type(ref, value) → click submit
 ```
 
 ### Scraping (read-only)
-```typescript
+```javascript
 const tree = await skills.getTree();
 // tree is a plain string — parse it or pass directly to LLM
 // headless: true for scraping tasks
 ```
 
 ### Multi-step Navigation
-```typescript
+```javascript
 let tree = await skills.navigate('https://site.com');
 await skills.click(ref);
 await new Promise(r => setTimeout(r, 2000));
