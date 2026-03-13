@@ -5,7 +5,7 @@ description: Browser automation skill using CDP (Chrome DevTools Protocol) Acces
 
 # CDP Browser Automation Skill
 
-This skill uses the **cdp-skills** library (`~/.claude/plugins/cdp-skills`) to automate Chrome via the Accessibility Tree. Instead of parsing full HTML (expensive tokens), it uses a numbered reference system:
+This skill uses the **cdp-skills** library (installed globally via `npm install -g cdp-skills`) to automate Chrome via the Accessibility Tree. Instead of parsing full HTML (expensive tokens), it uses a numbered reference system:
 
 ```
 [1] heading "Sign in"
@@ -22,7 +22,7 @@ Claude then calls `click(4)`, `type(2, "email")` — no CSS selectors, no XPath.
 ## Core API
 
 ```javascript
-const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const PLUGIN = require('child_process').execSync('npm root -g').toString().trim() + '/cdp-skills';
 const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 const skills = new CdpSkills({ port: 9222 });
@@ -66,7 +66,7 @@ Always wrap in `try/finally` so Chrome closes even on error.
 
 ```bash
 node -e "
-const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const PLUGIN = require('child_process').execSync('npm root -g').toString().trim() + '/cdp-skills';
 const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 async function main() {
@@ -113,7 +113,7 @@ main().catch(console.error);
 ### Advanced: JS Evaluation (DOM 직접 접근)
 ```bash
 node -e "
-const PLUGIN = process.env.HOME + '/.claude/plugins/cdp-skills';
+const PLUGIN = require('child_process').execSync('npm root -g').toString().trim() + '/cdp-skills';
 const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 async function main() {

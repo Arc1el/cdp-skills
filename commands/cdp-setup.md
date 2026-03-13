@@ -1,34 +1,34 @@
 ---
-description: CDP Skills 초기 설정 — npm 의존성 설치 및 TypeScript 빌드. 플러그인 설치 후 반드시 실행.
+description: CDP Skills 설치 상태 확인. npm global 설치 및 스킬 등록 여부를 점검.
 allowed-tools: Bash(bash:*)
 ---
 
-CDP Skills 플러그인을 초기 설정한다.
+CDP Skills 설치 상태를 확인한다.
 
 ## 실행 절차
 
-### 1. 플러그인 루트 경로 확인
+### 1. npm global 설치 확인
 
 ```bash
-PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$HOME/.claude/plugins/cdp-skills}"
-echo "Plugin root: $PLUGIN_ROOT"
-ls "$PLUGIN_ROOT"
+npm root -g
+npm list -g cdp-skills 2>/dev/null || echo "NOT INSTALLED"
 ```
 
-### 2. 의존성 설치 및 빌드
+### 2. 미설치 시 안내
+
+설치되어 있지 않으면 아래 명령어를 안내한다:
 
 ```bash
-cd "$PLUGIN_ROOT"
-npm install
-npm run build
+npm install -g cdp-skills
+npx skills add github.com/Arc1el/cdp-skills
 ```
 
 ### 3. 완료 보고
 
-설정 완료 후 아래 내용을 사용자에게 안내한다:
+설치가 확인되면 아래 내용을 안내한다:
 
-- 설치 경로: `$PLUGIN_ROOT`
-- 스킬은 플러그인에서 자동으로 등록된다 (`cdp-skills:cdp-browser`)
+- 라이브러리 위치: `$(npm root -g)/cdp-skills`
+- 스킬은 `npx skills add github.com/Arc1el/cdp-skills`로 등록
 - 사용 방법 예시:
   - `"https://example.com 로그인해줘"`
   - `"이 사이트에서 데이터 스크래핑해줘"`
