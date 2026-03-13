@@ -1,6 +1,6 @@
 ---
 name: cdp-browser
-description: Browser automation skill using CDP (Chrome DevTools Protocol) Accessibility Tree. Use this skill whenever the user wants to automate a browser, scrape a website, fill out a form, log in, click buttons, navigate pages, or do anything Playwright/Selenium would do — even if they don't mention "CDP" or "accessibility tree". Trigger on: "로그인해줘", "웹사이트에서 ~해줘", "자동화", "스크래핑", "폼 작성", "브라우저 자동화", "automate", "scrape", "browse", "fill form", "click", "navigate to", or any task involving controlling a real browser.
+description: "Browser automation skill using CDP (Chrome DevTools Protocol) Accessibility Tree. Use this skill whenever the user wants to automate a browser, scrape a website, fill out a form, log in, click buttons, navigate pages, or do anything Playwright/Selenium would do — even if they don't mention CDP or accessibility tree. Trigger on: 로그인해줘, 웹사이트에서 ~해줘, 자동화, 스크래핑, 폼 작성, 브라우저 자동화, automate, scrape, browse, fill form, click, navigate to, or any task involving controlling a real browser."
 ---
 
 # CDP Browser Automation Skill
