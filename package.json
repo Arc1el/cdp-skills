@@ -20,6 +20,7 @@
     "skills"
   ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc -p tsconfig.build.json",
     "test": "jest",
     "test:unit": "jest tests/unit",
