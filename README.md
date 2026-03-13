@@ -34,6 +34,22 @@ npx skills add github.com/Arc1el/cdp-skills
 
 ---
 
+## 제거
+
+### 1. 스킬 등록 해제
+
+```bash
+npx skills remove github.com/Arc1el/cdp-skills
+```
+
+### 2. 라이브러리 제거
+
+```bash
+npm uninstall -g cdp-skills
+```
+
+---
+
 ## 사용법
 
 설치 후 Claude Code에서 자연어로 요청하면 된다:
