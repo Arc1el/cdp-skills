@@ -1,0 +1,1 @@
+{"version":3,"file":"Navigator.d.ts","sourceRoot":"","sources":["../../src/interaction/Navigator.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAG5D,qBAAa,SAAS;IACR,OAAO,CAAC,QAAQ,CAAC,UAAU;gBAAV,UAAU,EAAE,aAAa;IAEhD,QAAQ,CAAC,GAAG,EAAE,MAAM,GAAG,OAAO,CAAC,IAAI,CAAC;YAgB5B,WAAW;CAM1B"}
