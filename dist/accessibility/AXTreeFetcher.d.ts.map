@@ -1,0 +1,1 @@
+{"version":3,"file":"AXTreeFetcher.d.ts","sourceRoot":"","sources":["../../src/accessibility/AXTreeFetcher.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,SAAS,EAAE,MAAM,SAAS,CAAC;AAEpC,qBAAa,aAAa;IACZ,OAAO,CAAC,QAAQ,CAAC,UAAU;gBAAV,UAAU,EAAE,aAAa;IAEhD,aAAa,IAAI,OAAO,CAAC,SAAS,EAAE,CAAC;CAK5C"}

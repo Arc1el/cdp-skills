@@ -1,0 +1,1 @@
+{"version":3,"file":"Focuser.d.ts","sourceRoot":"","sources":["../../src/interaction/Focuser.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,eAAe,EAAE,MAAM,wBAAwB,CAAC;AAGzD,qBAAa,OAAO;IACN,OAAO,CAAC,QAAQ,CAAC,UAAU;gBAAV,UAAU,EAAE,aAAa;IAEhD,KAAK,CAAC,IAAI,EAAE,eAAe,GAAG,OAAO,CAAC,IAAI,CAAC;CAiBlD"}

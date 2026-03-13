@@ -1,0 +1,1 @@
+{"version":3,"file":"Typer.d.ts","sourceRoot":"","sources":["../../src/interaction/Typer.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,eAAe,EAAE,MAAM,wBAAwB,CAAC;AAGzD,qBAAa,KAAK;IACJ,OAAO,CAAC,QAAQ,CAAC,UAAU;gBAAV,UAAU,EAAE,aAAa;IAEhD,IAAI,CAAC,IAAI,EAAE,eAAe,EAAE,IAAI,EAAE,MAAM,GAAG,OAAO,CAAC,IAAI,CAAC;CA+B/D"}
