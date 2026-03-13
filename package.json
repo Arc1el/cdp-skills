@@ -1,10 +1,26 @@
 {
   "name": "cdp-skills",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "CDP Accessibility Tree Browser Automation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "skills": "./skills/",
+  "files": [
+    "dist",
+    "skills",
+    "README.md"
+  ],
+  "keywords": [
+    "browser-automation",
+    "cdp",
+    "accessibility-tree",
+    "playwright",
+    "scraping",
+    "claude-code",
+    "skills"
+  ],
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc -p tsconfig.build.json",
     "test": "jest",
     "test:unit": "jest tests/unit",

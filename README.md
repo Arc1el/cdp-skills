@@ -1,6 +1,6 @@
 # cdp-skills
 
-Claude Code 브라우저 자동화 플러그인. Chrome DevTools Protocol의 Accessibility Tree를 번호 참조 시스템으로 변환해 LLM이 CSS 셀렉터 없이 브라우저를 제어한다.
+Claude Code 브라우저 자동화 스킬. Chrome DevTools Protocol의 Accessibility Tree를 번호 참조 시스템으로 변환해 LLM이 CSS 셀렉터 없이 브라우저를 제어한다.
 
 ```
 [1] textbox "Email" value=""
@@ -14,25 +14,21 @@ Claude Code 브라우저 자동화 플러그인. Chrome DevTools Protocol의 Acc
 
 ## 설치
 
-### 1. 마켓플레이스 등록
+### 1. 라이브러리 설치
 
-```
-/plugin marketplace add https://github.com/Arc1el/cdp-skills
-```
-
-### 2. 플러그인 설치
-
-```
-/plugin install cdp-skills
+```bash
+npm install -g github:Arc1el/cdp-skills
 ```
 
-### 3. 초기 설정
+설치 시 TypeScript 빌드가 자동으로 실행된다.
 
-```
-/cdp-setup
+### 2. 스킬 등록
+
+```bash
+npx skills add github.com/Arc1el/cdp-skills
 ```
 
-npm 의존성 설치, TypeScript 빌드, Claude Code 스킬 경로 설정을 자동으로 처리한다.
+[vercel-labs/skills](https://github.com/vercel-labs/skills) CLI가 `SKILL.md`를 Claude Code 스킬 디렉터리에 등록한다.
 
 **요구사항:** Node.js 18+, Google Chrome
 
@@ -77,30 +73,25 @@ Claude → type(1, "user@email.com")
 
 ---
 
-## 플러그인 구조
+## 패키지 구조
 
 ```
 cdp-skills/
-├── .claude-plugin/
-│   ├── plugin.json        ← 플러그인 매니페스트
-│   └── marketplace.json   ← 마켓플레이스 등록 정보
 ├── skills/
-│   └── cdp-browser/       ← Claude Code 에이전트 스킬
+│   └── cdp-browser/       ← npx skills로 등록되는 에이전트 스킬
 │       ├── SKILL.md
 │       └── references/api.md
-├── commands/
-│   └── cdp-setup.md       ← /cdp-setup 커맨드
-└── src/                   ← TypeScript 라이브러리 (내부 구현)
+├── dist/                  ← 설치 시 자동 빌드 (npm install -g 시 생성)
+└── src/                   ← TypeScript 라이브러리 소스
 ```
 
 ---
 
 ## 개발자용 API
 
-라이브러리를 직접 사용하려면 `/cdp-setup` 후:
-
-```typescript
-import { CdpSkills } from '~/.claude/plugins/cdp-skills/src/CdpSkills';
+```javascript
+const PLUGIN = require('child_process').execSync('npm root -g').toString().trim() + '/cdp-skills';
+const { CdpSkills } = require(PLUGIN + '/dist/CdpSkills');
 
 const skills = new CdpSkills();
 await skills.launch();
